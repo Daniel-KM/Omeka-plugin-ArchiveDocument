@@ -11,7 +11,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
     const METADATA_SCHEMA = 'http://localhost';
     const METADATA_PREFIX = 'doc';
 
-    const XML_PREFIX= self::METADATA_PREFIX;
+    const XML_PREFIX= 'doc';
     const XML_NAMESPACE = 'http://localhost/documents/';
     const DC_PREFIX = 'dc';
     const DC_NAMESPACE = 'http://purl.org/dc/elements/1.1/';
