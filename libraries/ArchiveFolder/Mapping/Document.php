@@ -59,7 +59,7 @@ class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
 
         $this->_xml->registerXPathNamespace(self::XML_PREFIX, self::XML_NAMESPACE);
 
-        $nameBase = $this->_getRelativePathToFolder($this->_metadataFilepath);
+        $nameBase = $this->_managePaths->getRelativePathToFolder($this->_metadataFilepath);
         foreach ($this->_xml->record as $key => $record) {
             // Process common metadata and create a new record for them.
             $doc = $this->_getDataForRecord($record);
@@ -88,7 +88,7 @@ class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
                 // the document.
                 $file = dom_import_simplexml($fileXml);
                 if ($file) {
-                    $fileurl = $this->_getRepositoryUrlForFile($path);
+                    $fileurl = $this->_managePaths->getRepositoryUrlForFile($path);
                     $file->setAttribute('file', $fileurl);
                 }
             }
