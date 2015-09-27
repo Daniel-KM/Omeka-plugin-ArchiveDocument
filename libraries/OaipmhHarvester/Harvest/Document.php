@@ -516,10 +516,20 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
         $simpleXml = simplexml_load_string($output, 'SimpleXMLElement', LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
         // Non XML data.
         if (empty($simpleXml)) {
+            // Check if this is a CDATA.
             if ($this->_isCdata($output)) {
                 $output = substr($output, 9, strlen($output) - 12);
             }
+            // Check if this is a json data.
+            elseif (json_decode($output) !== null) {
+                $output = html_entity_decode($output, ENT_NOQUOTES);
+            }
+            // Else this is a normal data.
+            else {
+                $output = html_entity_decode($output);
+            }
         }
+        // Else this is an xml value, so no change because it's xml escaped.
 
         return trim($output);
     }
