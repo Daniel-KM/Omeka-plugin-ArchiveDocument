@@ -7,7 +7,7 @@
 class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
 {
     const METADATA_PREFIX = 'doc';
-    const METADATA_SCHEMA = 'http://localhost';
+    const METADATA_SCHEMA = 'http://localhost/documents.xsd';
     const METADATA_NAMESPACE = 'http://localhost/documents/';
 
     protected $_metadataPrefix = self::METADATA_PREFIX;
