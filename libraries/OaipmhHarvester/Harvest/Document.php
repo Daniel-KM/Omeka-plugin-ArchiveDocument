@@ -338,7 +338,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
     protected function _prepareDCQTerms()
     {
         // Prepare labels of dc terms.
-        require dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'elements_qdc.php';
+        require dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'elements_dcterms.php';
         $this->_dcTerms = array();
         foreach ($elements as $element) {
             // Checks are done on lower case names and labels.

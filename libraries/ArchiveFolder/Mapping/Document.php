@@ -37,8 +37,8 @@ class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
 
     public function __construct($uri, $parameters)
     {
-        // The use_qdc is forced to simplify process.
-        $parameters['use_qdc'] = true;
+        // The use_dcterms is forced to simplify process.
+        $parameters['use_dcterms'] = true;
         parent::__construct($uri, $parameters);
     }
 

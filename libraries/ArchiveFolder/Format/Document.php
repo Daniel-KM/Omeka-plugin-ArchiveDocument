@@ -15,7 +15,7 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
     protected $_metadataNamespace = self::METADATA_NAMESPACE;
 
     protected $_parametersFormat = array(
-        'use_qdc' => true,
+        'use_dcterms' => true,
         'link_to_files' => false,
         'support_separated_files' => false,
         'compare_directly' => true,
@@ -42,8 +42,8 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
 
         // Mets can use simple or qualified Dublin Core, so prepare it if
         // needed.
-        if (!empty($this->_getParameter('use_qdc'))) {
-            $this->_parametersFormat['use_qdc'] = true;
+        if (!empty($this->_getParameter('use_dcterms'))) {
+            $this->_parametersFormat['use_dcterms'] = true;
             $this->_loadDcmiElements();
         }
     }

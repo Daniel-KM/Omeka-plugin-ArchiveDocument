@@ -22,12 +22,14 @@
                 <xs:element ref="elementSet"/>
                 <xs:element ref="extra"/>
                 <xs:element ref="dc:any"/>
+                <xs:element ref="dcterms:any"/>
                 <xs:element name="record">
                     <xs:complexType>
                         <xs:choice minOccurs="0" maxOccurs="unbounded">
                             <xs:element ref="elementSet"/>
                             <xs:element ref="extra"/>
                             <xs:element ref="dc:any"/>
+                            <xs:element ref="dcterms:any"/>
                         </xs:choice>
                         <xs:attribute name="file" type="xs:anyURI" use="required"/>
                     </xs:complexType>
