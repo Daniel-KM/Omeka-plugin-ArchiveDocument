@@ -21,10 +21,6 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
         'compare_directly' => true,
     );
 
-    // List of Qualified Dublin Core terms. This list is built automatically
-    // if needed.
-    protected $_dcmiTerms = array();
-
     // List of special extra fields that will be normalized.
     protected $_specialExtraData = array(
         'collection',
@@ -36,16 +32,13 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
         'tags',
     );
 
-    public function __construct($parameters, $writer)
+    public function __construct($uri, $parameters)
     {
-        parent::__construct($parameters, $writer);
-
-        // Mets can use simple or qualified Dublin Core, so prepare it if
-        // needed.
-        if (!empty($this->_getParameter('use_dcterms'))) {
-            $this->_parametersFormat['use_dcterms'] = true;
-            $this->_loadDcmiElements();
+        if (empty($parameters['use_dcterms'])) {
+            $this->_parametersFormat['use_dcterms'] = false;
         }
+
+        parent::__construct($uri, $parameters);
     }
 
     /**
@@ -67,7 +60,7 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
         // The record is the document because item and files are saved together.
         $record = $this->_document;
 
-        // Prepare the mets record.
+        // Prepare the record.
         $writer->startElement('record');
         $writer->writeAttribute('xmlns', self::METADATA_NAMESPACE);
         $writer->writeAttribute('xmlns:' . self::XSI_PREFIX, self::XSI_NAMESPACE);

@@ -664,7 +664,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
 
         $collection = $collectionTable->fetchObject($select);
         if (!$collection && !$this->_createCollections) {
-            _log('[ArchiveFolder] '. 'Collection not found. Collections must be created with identical names prior to import', Zend_Log::NOTICE);
+            _log('[ArchiveFolder] ' . 'Collection not found. Collections must be created with identical names prior to import', Zend_Log::NOTICE);
             return false;
         }
         return $collection;
