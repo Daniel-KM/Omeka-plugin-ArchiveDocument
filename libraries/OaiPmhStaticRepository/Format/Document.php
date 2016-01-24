@@ -2,9 +2,9 @@
 /**
  * Metadata format map for the Document xml format.
  *
- * @package ArchiveFolderDocument
+ * @package ArchiveDocument
  */
-class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
+class OaiPmhStaticRepository_Format_Document extends OaiPmhStaticRepository_Format_Abstract
 {
     const METADATA_PREFIX = 'doc';
     const METADATA_SCHEMA = 'http://localhost/documents.xsd';
@@ -22,7 +22,7 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
     );
 
     // List of special extra fields that will be normalized.
-    protected $_specialExtraData = array(
+    protected $_specialData = array(
         'collection',
         'item type',
         'featured',
@@ -69,8 +69,7 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
         $this->_writeMetadata($record);
         $this->_writeExtraData($record);
 
-        $recordsForFiles = (boolean) $this->_getParameter('records_for_files');
-        if ($recordsForFiles && isset($record['files'])) {
+        if (!empty($record['files'])) {
             foreach ($record['files'] as $file) {
                 $writer->startElement('record');
                 // The filepath should be an absolute full url.
@@ -120,7 +119,7 @@ class ArchiveFolder_Format_Document extends ArchiveFolder_Format_Abstract
         $writer->startElement('extra');
         foreach ($record['extra'] as $name => $field) {
             // Normalize the name of special extra data.
-            if (in_array(strtolower($name), $this->_specialExtraData)) {
+            if (in_array(strtolower($name), $this->_specialData)) {
                 $name = strtolower($name);
             }
             if (is_string($field)) {

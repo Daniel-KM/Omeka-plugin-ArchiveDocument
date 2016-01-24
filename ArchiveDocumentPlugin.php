@@ -1,18 +1,19 @@
 <?php
 /**
- * Archive Folder Document
+ * Archive Document
  *
- * The format of the documents that is used internally by Archive Folder.
+ * The format of the documents that is used internally by Archive Folder and
+ * OAI-PMH Static Repository.
  *
  * @copyright Copyright Daniel Berthereau, 2015
  * @license http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * @package ArchiveFolderDocument
+ * @package ArchiveDocument
  */
 
 /**
- * The Archive Folder Document plugin.
+ * The Archive Document plugin.
  */
-class ArchiveFolderDocumentPlugin extends Omeka_Plugin_AbstractPlugin
+class ArchiveDocumentPlugin extends Omeka_Plugin_AbstractPlugin
 {
     /**
      * @var array This plugin's hooks.
@@ -25,8 +26,8 @@ class ArchiveFolderDocumentPlugin extends Omeka_Plugin_AbstractPlugin
      * @var array This plugin's filters.
      */
     protected $_filters = array(
-        'archive_folder_mappings',
-        'archive_folder_formats',
+        'oai_pmh_static_repository_mappings',
+        'oai_pmh_static_repository_formats',
         'oai_pmh_harvester_maps',
     );
 
@@ -50,10 +51,10 @@ class ArchiveFolderDocumentPlugin extends Omeka_Plugin_AbstractPlugin
      * @param array $mappings Available mappings.
      * @return array Filtered mappings array.
     */
-    public function filterArchiveFolderMappings($mappings)
+    public function filterOaiPmhStaticRepositoryMappings($mappings)
     {
         $mappings['doc'] = array(
-            'class' => 'ArchiveFolder_Mapping_Document',
+            'class' => 'OaiPmhStaticRepository_Mapping_Document',
             'description' => __('Documents xml (simple format that manages all features of Omeka)'),
         );
 
@@ -68,11 +69,11 @@ class ArchiveFolderDocumentPlugin extends Omeka_Plugin_AbstractPlugin
      * @param array $metadataFormats Metadata formats array.
      * @return array Filtered metadata formats array.
     */
-    public function filterArchiveFolderFormats($formats)
+    public function filterOaiPmhStaticRepositoryFormats($formats)
     {
         $formats['doc'] = array(
             'prefix' => 'doc',
-            'class' => 'ArchiveFolder_Format_Document',
+            'class' => 'OaiPmhStaticRepository_Format_Document',
             'description' => __('Documents'),
         );
 

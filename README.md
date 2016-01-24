@@ -1,8 +1,9 @@
-Archive Folder Document (plugin for Omeka)
-==========================================
+Archive Document (plugin for Omeka)
+===================================
 
-[Archive Folder Document] is a plugin for [Omeka] that adds the internal format
-"documents" that is used with the plugin [Archive Folder].
+[Archive Document] is a plugin for [Omeka] that adds the internal format
+"documents" that is used by the plugins [Archive Folder], [OAI-PMH Static Repository]
+and some other ones.
 
 See [Archive Folder] for more information.
 
@@ -10,7 +11,7 @@ See [Archive Folder] for more information.
 Installation
 ------------
 
-Uncompress files and rename plugin folder "ArchiveFolderDocument".
+Uncompress files and rename plugin folder "ArchiveDocument".
 
 Then install it like any other Omeka plugin.
 
@@ -67,10 +68,11 @@ Copyright
 * Copyright Daniel Berthereau, 2015
 
 
-[Archive Folder Document]: https://github.com/Daniel-KM/ArchiveFolderDocument
+[Archive Document]: https://github.com/Daniel-KM/ArchiveDocument
 [Archive Folder]: https://github.com/Daniel-KM/ArchiveFolder
+[OAI-PMH Static Repository]: https://github.com/Daniel-KM/OaiPmhStaticRepository
 [Omeka]: https://www.omeka.org
-[plugin issues]: https://github.com/Daniel-KM/ArchiveFolderDocument/issues
+[plugin issues]: https://github.com/Daniel-KM/ArchiveDocument/issues
 [CeCILL v2.1]: https://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
 [FSF]: https://www.fsf.org

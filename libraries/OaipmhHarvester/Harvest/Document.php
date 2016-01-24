@@ -2,7 +2,7 @@
 /**
  * Metadata format map for the doc Document format.
  *
- * @package ArchiveFolderDocument
+ * @package ArchiveDocument
  */
 class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
 {
@@ -152,8 +152,8 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
     }
 
     /**
-     * Ingest specific data and fire the hook "archive_folder_ingest_extra" for
-     * the item and each file.
+     * Ingest specific data and fire the hook "oai_pmh_static_repository_ingest_extra"
+     * for the item and each file.
      *
      * @param Record $record
      * @param array $harvestedRecord
@@ -165,7 +165,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
         // Static repository requires a date without time, so successive updates
         // of the static repository on the same day may not be ingested. This
         // check is a workaround.
-        if ($performed == 'skipped' && get_option('archive_folder_force_update')) {
+        if ($performed == 'skipped' && get_option('oai_pmh_static_repository_force_update')) {
             $record = $this->_updateItem(
                 $record,
                 $harvestedRecord['elementTexts'],
@@ -208,14 +208,14 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
         }
 
         // Call the hook.
-        fire_plugin_hook('archive_folder_ingest_data', array(
+        fire_plugin_hook('oai_pmh_static_repository_ingest_data', array(
             'record' => $item,
             'data' => $harvestedRecord,
         ));
 
         foreach ($harvestedRecord['fileMetadata'] as $key => $fileMetadata) {
             if (!empty($files[$key])) {
-                fire_plugin_hook('archive_folder_ingest_data', array(
+                fire_plugin_hook('oai_pmh_static_repository_ingest_data', array(
                     'record' => $files[$key],
                     'data' => $fileMetadata,
                 ));
@@ -350,7 +350,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
     /**
      * Get all data for a record (item or file).
      *
-     * @see ArchiveFolder_Mapping_Document::_getDataForRecord()
+     * @see OaiPmhStaticRepository_Mapping_Document::_getDataForRecord()
      *
      * @param SimpleXml $record The item or file, not the oai record.
      * @return array The document array.
@@ -480,7 +480,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
     /**
      * Get the attribute of an xml element.
      *
-     * @see ArchiveFolder_Mapping_Document::_getXmlAttribute()
+     * @see OaiPmhStaticRepository_Mapping_Document::_getXmlAttribute()
      *
      * @param SimpleXml $xml
      * @param string $attribute
@@ -498,7 +498,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
      *
      * @todo Fully manage cdata
      *
-     * @see ArchiveFolder_Mapping_Document::_innerXML()
+     * @see OaiPmhStaticRepository_Mapping_Document::_innerXML()
      *
      * @param SimpleXml $xml
      * @return string
@@ -547,6 +547,9 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
 
     /**
      * Return an array of names from a string in array notation.
+     *
+     * @param string $string The name in array notation.
+     * @return array
      */
     protected function _convertArrayNotation($string)
     {
@@ -664,7 +667,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
 
         $collection = $collectionTable->fetchObject($select);
         if (!$collection && !$this->_createCollections) {
-            _log('[ArchiveFolder] ' . 'Collection not found. Collections must be created with identical names prior to import', Zend_Log::NOTICE);
+            _log('[ArchiveDocument] '. 'Collection not found. Collections must be created with identical names prior to import', Zend_Log::NOTICE);
             return false;
         }
         return $collection;

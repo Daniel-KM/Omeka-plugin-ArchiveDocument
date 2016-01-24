@@ -2,9 +2,9 @@
 /**
  * Map Document xml files into Omeka elements for each item and file.
  *
- * @package ArchiveFolderDocument
+ * @package ArchiveDocument
  */
-class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
+class OaiPmhStaticRepository_Mapping_Document extends OaiPmhStaticRepository_Mapping_Abstract
 {
     const XML_ROOT = 'documents';
     const XML_PREFIX = 'doc';
@@ -104,7 +104,7 @@ class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
     /**
      * Get all data for a record (item or file).
      *
-     * @see ArchiveFolder_Harvest_Document::_getDataForRecord()
+     * @see OaiPmhStaticRepository_Harvest_Document::_getDataForRecord()
      *
      * @param SimpleXml $record
      * @return array The document array.
@@ -212,7 +212,7 @@ class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
     /**
      * Get the attribute of a xml element.
      *
-     * @see ArchiveFolder_Harvest_Document::_getXmlAttribute()
+     * @see OaiPmhStaticRepository_Harvest_Document::_getXmlAttribute()
      *
      * @param SimpleXml $xml
      * @param string $attribute
@@ -230,7 +230,7 @@ class ArchiveFolder_Mapping_Document extends ArchiveFolder_Mapping_Abstract
      *
      * @todo Fully manage cdata
      *
-     * @see ArchiveFolder_Harvest_Document::_innerXML()
+     * @see OaiPmhStaticRepository_Harvest_Document::_innerXML()
      *
      * @param SimpleXml $xml
      * @return string
