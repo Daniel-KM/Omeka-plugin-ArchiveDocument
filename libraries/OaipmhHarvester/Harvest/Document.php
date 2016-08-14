@@ -700,7 +700,7 @@ class OaipmhHarvester_Harvest_Document extends OaipmhHarvester_Harvest_Abstract
      */
      public function createOaiRecordFromXmlDocument($record, $xmlpath)
      {
-        $recordXml = simplexml_load_file($xmlpath);
+        $recordXml = simplexml_load_file($xmlpath, 'SimpleXMLElement', LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_PARSEHUGE);
         if (empty($recordXml) || empty($recordXml->record)) {
             return;
         }

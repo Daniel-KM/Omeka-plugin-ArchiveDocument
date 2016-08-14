@@ -15,11 +15,12 @@ class OaiPmhStaticRepository_Mapping_Document extends OaiPmhStaticRepository_Map
     const DCTERMS_PREFIX = 'dcterms';
     const DCTERMS_NAMESPACE = 'http://purl.org/dc/terms/';
 
-    protected $_checkMetadataFile = array('extension', 'xml');
+    protected $_checkMetadataFile = array('extension', 'root xml');
     protected $_extension = 'xml';
     protected $_formatXml = self::XML_PREFIX;
     protected $_xmlRoot = self::XML_ROOT;
     protected $_xmlNamespace = self::XML_NAMESPACE;
+    protected $_xmlPrefix = self::XML_PREFIX;
 
     // Current doc for internal purposes.
     protected $_doc;
@@ -52,7 +53,7 @@ class OaiPmhStaticRepository_Mapping_Document extends OaiPmhStaticRepository_Map
 
         // If the xml is too large, the php memory may be increased so it can be
         // processed directly via SimpleXml.
-        $this->_xml = simplexml_load_file($this->_metadataFilepath);
+        $this->_xml = simplexml_load_file($this->_metadataFilepath, 'SimpleXMLElement', LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_PARSEHUGE);
         if ($this->_xml === false) {
             return;
         }
@@ -240,6 +241,42 @@ class OaiPmhStaticRepository_Mapping_Document extends OaiPmhStaticRepository_Map
         $output = $xml->asXml();
         $pos = strpos($output, '>') + 1;
         $len = strrpos($output, '<') - $pos;
-        return trim(substr($output, $pos, $len));
+        $output = trim(substr($output, $pos, $len));
+
+        // Only main CDATA is managed, not inside content: if this is an xml or
+        // html, it will be managed automatically by the display; if this is a
+        // text, the cdata is a text too.
+        $simpleXml = simplexml_load_string($output, 'SimpleXMLElement', LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+        // Non XML data.
+        if (empty($simpleXml)) {
+            // Check if this is a CDATA.
+            if ($this->_isCdata($output)) {
+                $output = substr($output, 9, strlen($output) - 12);
+            }
+            // Check if this is a json data.
+            elseif (json_decode($output) !== null) {
+                $output = html_entity_decode($output, ENT_NOQUOTES);
+            }
+            // Else this is a normal data.
+            else {
+                $output = html_entity_decode($output);
+            }
+        }
+        // Else this is an xml value, so no change because it's xml escaped.
+
+        return trim($output);
+    }
+
+    /**
+     * Check if a string is an xml cdata one.
+     *
+     * @param string $string
+     * @return boolean
+     */
+    protected function _isCdata($string)
+    {
+        $string = trim($string);
+        return !empty($string)
+            && strpos($string, '<![CDATA[') === 0 && strpos($string, ']]>') === strlen($string) - 3;
     }
 }

@@ -10,9 +10,17 @@ class OaiPmhStaticRepository_Format_Document extends OaiPmhStaticRepository_Form
     const METADATA_SCHEMA = 'http://localhost/documents.xsd';
     const METADATA_NAMESPACE = 'http://localhost/documents/';
 
+    const DC_PREFIX = 'dc';
+    const DC_NAMESPACE = 'http://purl.org/dc/elements/1.1/';
+    const DCTERMS_PREFIX = 'dcterms';
+    const DCTERMS_NAMESPACE = 'http://purl.org/dc/terms/';
+
+    const XML_ROOT = 'documents';
+
     protected $_metadataPrefix = self::METADATA_PREFIX;
     protected $_metadataSchema = self::METADATA_SCHEMA;
     protected $_metadataNamespace = self::METADATA_NAMESPACE;
+    protected $_xmlRoot = self::XML_ROOT;
 
     protected $_parametersFormat = array(
         'use_dcterms' => true,
