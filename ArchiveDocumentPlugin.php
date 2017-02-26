@@ -2,10 +2,9 @@
 /**
  * Archive Document
  *
- * The format of the documents that is used internally by Archive Folder and
- * OAI-PMH Static Repository.
+ * The format of the documents that is used internally by OAI-PMH Static Repository.
  *
- * @copyright Copyright Daniel Berthereau, 2015
+ * @copyright Copyright Daniel Berthereau, 2015-2017
  * @license http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  * @package ArchiveDocument
  */

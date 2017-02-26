@@ -2,10 +2,8 @@ Archive Document (plugin for Omeka)
 ===================================
 
 [Archive Document] is a plugin for [Omeka] that adds the internal format
-"documents" that is used by the plugins [Archive Folder], [OAI-PMH Static Repository]
-and some other ones.
-
-See [Archive Folder] for more information.
+"documents" that is used by the plugins [OAI-PMH Static Repository] and some
+other ones. It doesn’t add any feature.
 
 
 Installation
@@ -21,7 +19,7 @@ Warning
 
 Use it at your own risk.
 
-It's always recommended to backup your files and database regularly so you can
+It’s always recommended to backup your files and database regularly so you can
 roll back if needed.
 
 
@@ -39,11 +37,11 @@ This plugin is published under the [CeCILL v2.1] licence, compatible with
 
 In consideration of access to the source code and the rights to copy, modify and
 redistribute granted by the license, users are provided only with a limited
-warranty and the software's author, the holder of the economic rights, and the
+warranty and the software’s author, the holder of the economic rights, and the
 successive licensors only have limited liability.
 
 In this respect, the risks associated with loading, using, modifying and/or
-developing or reproducing the software by the user are brought to the user's
+developing or reproducing the software by the user are brought to the user’s
 attention, given its Free Software status, which may make it complicated to use,
 with the result that its use is reserved for developers and experienced
 professionals having in-depth computer knowledge. Users are therefore encouraged
@@ -65,11 +63,10 @@ Current maintainers:
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2015
+* Copyright Daniel Berthereau, 2015-2017
 
 
 [Archive Document]: https://github.com/Daniel-KM/ArchiveDocument
-[Archive Folder]: https://github.com/Daniel-KM/ArchiveFolder
 [OAI-PMH Static Repository]: https://github.com/Daniel-KM/OaiPmhStaticRepository
 [Omeka]: https://www.omeka.org
 [plugin issues]: https://github.com/Daniel-KM/ArchiveDocument/issues
